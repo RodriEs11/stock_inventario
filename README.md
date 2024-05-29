@@ -9,7 +9,7 @@ Aplicación Web hecha con Spring Boot para la gestión de inventario, compra y v
 - MySQL Server
 - Maven
 
-
+Ejecutar el script `create-database.sql`, se creará una base de datos llamada `sistema_stock`
 
 ## Variables de entorno
 
@@ -25,7 +25,7 @@ Para correr el proyecto, se deben tener configuradas las siguientes variables de
 ## Usuarios por defecto
 
 | Tipo de usuario | Username | Password |
-| ------ | ------ | | ------ |
+| ------ | ------ | ------ |
 | Administrador | Admin | 1234 |
 | Cliente | Cliente | 1234 |
 | General | General | 1234 |
