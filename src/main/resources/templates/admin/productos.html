@@ -92,6 +92,7 @@
 
 									<tbody>
 										<tr th:each="producto : ${productos}">
+
 											<td th:text="${producto.id}"></td>
 											<td th:text="${producto.nombre}"></td>
 											<td th:text="${producto.descripcion}"></td>
@@ -99,7 +100,9 @@
 											<td th:text="${producto.precioVenta}"></td>
 											<td th:text="${producto.nivelStockMinimo}"></td>
 											<td>
-												<a class="btn btn-success btn-circle m-1" data-toggle="modal" th:data-producto="${producto}" data-target="#formEditarProductoModal">
+
+												<a class="btn btn-success btn-circle m-1"
+													th:href="@{'/productos/editar/' + ${producto.id}}">
 													<i data-toggle="tooltip" data-placement="top"
 														title="Editar producto">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -111,12 +114,16 @@
 														</svg>
 													</i>
 												</a>
-												<a class="btn btn-danger btn-circle m-1" data-toggle="modal"
-													th:data-producto="${producto}" data-target="#EliminarProductoModal">
-													<i data-toggle="tooltip" data-placement="top"
-														title="Eliminar producto" class="fas fa-trash"></i>
-												</a>
+												<form method="post"
+													th:action="@{'/productos/eliminar/' + ${producto.id}}">
+													<button class="btn btn-danger btn-circle m-1">
+														<i data-toggle="tooltip" data-placement="top"
+															title="Eliminar producto" class="fas fa-trash"></i>
+													</button>
+												</form>
+
 											</td>
+
 										</tr>
 									</tbody>
 
@@ -139,12 +146,6 @@
 						<!-- Formulario agregar producto -->
 						<div th:replace="~{fragments/formAgregarProducto-modal::formAgregarProducto-modal}"></div>
 
-						<!-- Formulario editar producto -->
-						<div th:replace="~{fragments/formEditarProducto-modal::formEditarProducto-modal}"></div>
-
-						<!-- Modal eliminar producto -->
-						<div th:replace="~{fragments/EliminarProducto-modal::EliminarProducto-modal}"></div>
-						
 					</div>
 
 				</div>

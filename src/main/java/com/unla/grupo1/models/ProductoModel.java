@@ -17,4 +17,5 @@ public class ProductoModel {
 	private double costo;
 	private double precioVenta;
 	private int nivelStockMinimo;
+	private boolean activo;
 }

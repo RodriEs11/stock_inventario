@@ -10,6 +10,7 @@ public class ViewRouteHelper {
 	
 	// VISTAS/Admin
 	public final static String PRODUCTOS = "admin/productos.html";
+	public final static String EDITAR_PRODUCTOS = "admin/editar-productos.html";
 	
 	
 	// ROLES EN LA BD
