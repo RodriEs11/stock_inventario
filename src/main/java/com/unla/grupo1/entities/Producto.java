@@ -53,6 +53,7 @@ public class Producto {
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
-	
+	@Column(name = "activo")
+	private boolean activo;
 	
 }

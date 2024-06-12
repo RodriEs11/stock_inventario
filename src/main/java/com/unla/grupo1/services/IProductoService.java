@@ -9,5 +9,7 @@ import com.unla.grupo1.models.ProductoModel;
 public interface IProductoService {
 	
 	public List<Producto> getAll();
+	public ProductoModel getById(int id);
 	public ProductoModel insertOrUpdate(ProductoModel productoModel);
+	public void deleteById(int id);
 }

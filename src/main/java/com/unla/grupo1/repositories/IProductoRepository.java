@@ -12,5 +12,5 @@ import com.unla.grupo1.entities.User;
 public interface IProductoRepository extends JpaRepository<Producto, Serializable> {
 
 	public abstract Producto findById(int id);
-	
+	public abstract boolean removeById(int id);
 }

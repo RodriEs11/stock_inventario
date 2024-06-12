@@ -8,6 +8,10 @@ public class ViewRouteHelper {
 	public final static String LOGIN = "login.html";
 	public final static String LOGOUT = "logout.html";
 	
+	// VISTAS/Admin
+	public final static String PRODUCTOS = "admin/productos.html";
+	public final static String EDITAR_PRODUCTOS = "admin/editar-productos.html";
+	
 	
 	// ROLES EN LA BD
 	public final static String ROLE_ADMIN = "ROLE_ADMIN";

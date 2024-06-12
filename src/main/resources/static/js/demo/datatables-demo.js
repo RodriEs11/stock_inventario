@@ -23,3 +23,8 @@ $(document).ready(function() {
 		info: true
 	});
 });
+
+// ToolTip para los botones Editar/Eliminar
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
