@@ -85,8 +85,8 @@
 								<tbody>
 									<tr th:each="proveedor : ${proveedores}">
 
-										<td th:text="${proveedor.id}"></td>
 										<td th:text="${proveedor.nombre}"></td>
+										<td th:text="${proveedor.telefono}"></td>
 										<td th:text="${proveedor.producto.getNombre()}"></td>
 
 
