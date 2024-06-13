@@ -51,6 +51,7 @@
 
 					<div class="modal-body">
 						<form action="/productos/editar" method="POST">
+							<input type="hidden" name="id" th:value="${producto.id}"/>
 							<div class="form-group">
 								<label for="nombre">Nombre del Producto</label>
 								<input type="text" class="form-control" id="nombre" name="nombre"

@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
 import com.unla.grupo1.helpers.ViewRouteHelper;
 import com.unla.grupo1.models.ProductoModel;
 import com.unla.grupo1.services.IProductoService;
@@ -42,7 +40,7 @@ public class ProductosController {
 		
 		ModelAndView vista = new ModelAndView(ViewRouteHelper.EDITAR_PRODUCTOS);
 		vista.addObject("producto", productoService.getById(id));
-		
+				
 		return vista;
 	}
 		
