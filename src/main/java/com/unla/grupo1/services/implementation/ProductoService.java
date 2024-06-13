@@ -48,5 +48,10 @@ public class ProductoService implements IProductoService{
 		productoRepository.delete(producto);
 
 	}
+
+	@Override
+	public List<Producto> getAllByOrderByNombreAsc() {
+		return productoRepository.findAllByOrderByNombreAsc();
+	}
 	
 }
