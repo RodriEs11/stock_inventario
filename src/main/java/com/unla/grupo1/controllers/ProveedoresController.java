@@ -47,6 +47,23 @@ public class ProveedoresController {
 		return vista;
 	}
 
+	@GetMapping("/editar/{id}")
+	public ModelAndView editarProveedor(@PathVariable int id){
+		
+		ModelAndView vista = new ModelAndView(ViewRouteHelper.EDITAR_PROVEEDOR);
+		vista.addObject("proveedor", proveedorService.getById(id));
+				
+		return vista;
+	}
+	
+	@PostMapping("/editar")
+	public String editarProveedor(@ModelAttribute("proveedor") ProveedorModel proveedorModel) {
+		
+		proveedorService.insertOrUpdate(proveedorModel);
+		
+		return "redirect:/proveedores";
+	}
+	
 	@PostMapping("/eliminar/{id}")
 	public String eliminarProveedor(@PathVariable int id) {
 
