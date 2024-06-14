@@ -43,6 +43,7 @@ public class HomeController {
 
 		vista.addObject("inventarios", inventarios);
 		vista.addObject("cantAlertasStockMinimo", cantAlertasStockMinimo);
+		
 		return vista;
 	}
 
