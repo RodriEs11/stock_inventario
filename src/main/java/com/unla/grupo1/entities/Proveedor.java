@@ -2,6 +2,7 @@ package com.unla.grupo1.entities;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Proveedor {
 	@Column(name = "telefono")
 	private String telefono;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Producto producto;
 	
 	
