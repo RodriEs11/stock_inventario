@@ -84,79 +84,87 @@
 										<th>Descripcion</th>
 										<th>Costo</th>
 										<th>Precio de venta</th>
-										<th>Cantidad de stock mínima</th>
 										<th>Acción</th>
 									</tr>
 								</thead>
 
 								<tbody>
+
 									<tr th:each="producto : ${productos}">
 
-										<td th:text="${producto.id}"></td>
+										<td th:text="${producto.codigo}"></td>
 										<td th:text="${producto.nombre}"></td>
 										<td th:text="${producto.descripcion}"></td>
 										<td th:text="${producto.costo}"></td>
 										<td th:text="${producto.precioVenta}"></td>
-										<td th:text="${producto.nivelStockMinimo}"></td>
 										<td>
 
-											<a class="btn btn-success btn-circle m-1"
-												th:href="@{'/productos/editar/' + ${producto.id}}">
-												<i data-toggle="tooltip" data-placement="top" title="Editar producto">
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-														fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-														<path
-															d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325">
-														</path>
-													</svg>
-												</i>
-											</a>
-											<form method="post" th:action="@{'/productos/eliminar/' + ${producto.id}}">
-												<button class="btn btn-danger btn-circle m-1">
+											<div class="d-flex p-2">
+												<a class="btn btn-success btn-circle m-1"
+													th:href="@{'/productos/editar/' + ${producto.id}}">
 													<i data-toggle="tooltip" data-placement="top"
-														title="Eliminar producto" class="fas fa-trash"></i>
-												</button>
-											</form>
+														title="Editar producto">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+															fill="currentColor" class="bi bi-pencil"
+															viewBox="0 0 16 16">
+															<path
+																d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325">
+															</path>
+														</svg>
+													</i>
+												</a>
+
+												<form method="POST"
+													th:action="@{'/productos/eliminar/' + ${producto.id}}">
+													<button class="btn btn-danger btn-circle m-1">
+														<i data-toggle="tooltip" data-placement="top"
+															title="Eliminar producto" class="fas fa-trash"></i>
+													</button>
+												</form>
+											</div>
+
+
+
 
 										</td>
 
-									</tr>
-								</tbody>
-
-								<tfoot>
-									<tr>
-										<th>Código</th>
-										<th>Nombre</th>
-										<th>Descripcion</th>
-										<th>Costo</th>
-										<th>Precio de venta</th>
-										<th>Cantidad mínima</th>
-										<th>Acción</th>
-									</tr>
-								</tfoot>
-
-							</table>
 						</div>
+
+						</tr>
+
+						</tbody>
+
+						<tfoot>
+							<tr>
+								<th>Codigo</th>
+								<th>Nombre</th>
+								<th>Descripcion</th>
+								<th>Costo</th>
+								<th>Precio de venta</th>
+								<th>Acción</th>
+							</tr>
+						</tfoot>
+
+						</table>
 					</div>
-
-					<!-- Formulario agregar producto -->
-					<div th:replace="~{fragments/formAgregarProducto-modal::formAgregarProducto-modal}"></div>
-
-				
-
 				</div>
-				<!-- /.container-fluid -->
+
+				<!-- Formulario agregar producto -->
+				<div th:replace="~{fragments/formAgregarProducto-modal::formAgregarProducto-modal}"></div>
 
 			</div>
-			<!-- End of Main Content -->
-
-			<!-- Footer -->
-			<div th:replace="~{fragments/footer :: footer}"></div>
-
-			<!-- End of Footer -->
+			<!-- /.container-fluid -->
 
 		</div>
-		<!-- End of Content Wrapper -->
+		<!-- End of Main Content -->
+
+		<!-- Footer -->
+		<div th:replace="~{fragments/footer :: footer}"></div>
+
+		<!-- End of Footer -->
+
+	</div>
+	<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -185,7 +193,6 @@
 
 	<!-- Page level custom scripts -->
 	<script th:src="@{/js/demo/datatables-demo.js}"></script>
-
 
 
 </body>
