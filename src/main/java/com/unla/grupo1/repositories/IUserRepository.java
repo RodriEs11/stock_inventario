@@ -1,0 +1,22 @@
+package com.unla.grupo1.repositories;
+
+import java.io.Serializable;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.unla.grupo1.entities.User;
+
+@Repository("userRepository")
+public interface IUserRepository extends JpaRepository<User, Serializable> {
+
+	public abstract User findById(int id);
+	public abstract User findByUsername(String username);
+	
+	@Query("SELECT u FROM User u JOIN FETCH u.userRoles WHERE u.username = (:username)")
+	public abstract User findByUsernameAndFetchUserRolesEagerly(@Param("username") String username);
+	
+	
+}

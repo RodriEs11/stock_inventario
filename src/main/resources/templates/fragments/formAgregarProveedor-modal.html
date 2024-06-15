@@ -1,0 +1,48 @@
+<!-- Agregar Producto Modal-->
+<div class="modal fade" id="formAgregarProveedorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	th:fragment="formAgregarProveedor-modal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Agregar nuevo proveedor</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="" method="POST">
+					<div class="form-group">
+						<label for="nombre">Nombre del proveedor</label>
+						<input type="text" class="form-control" id="nombre" name="nombre" required
+							placeholder="Ingrese el nombre del proveedor">
+					</div>
+					<div class="form-group">
+						<label for="telefono">Teléfono del proveedor</label>
+						<input type="text" class="form-control" id="telefono" name="telefono" required pattern="[0-9]{10}" 
+							placeholder="Ingrese el teléfono del proveedor">
+					</div>
+
+					<div class="form-group">
+						<label for="producto">Producto</label>
+						<select class="form-control" id="producto" name="producto" required>
+							<option value="">Seleccione un producto</option>
+							<th:block th:each="producto : ${productos}">
+								<option th:value="${producto.id}" th:text="${producto.nombre}"></option>
+							</th:block>
+						</select>
+					</div>
+					
+					
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+					<button class="btn btn-primary" type="submit">Agregar proveedor </button>
+				</form>
+			</div>
+
+
+			<div class="modal-footer">
+
+			</div>
+		</div>
+	</div>
+</div>
