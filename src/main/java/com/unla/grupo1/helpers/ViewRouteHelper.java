@@ -2,7 +2,6 @@ package com.unla.grupo1.helpers;
 
 public class ViewRouteHelper {
 	
-	
 	// VISTAS
 	public final static String INDEX = "index.html";
 	public final static String LOGIN = "login.html";
@@ -10,6 +9,15 @@ public class ViewRouteHelper {
 	
 	public final static String PRODUCTOS = "admin/producto/productos.html";
 	public final static String EDITAR_PRODUCTOS = "admin/producto/editar-producto.html";
+	
+	//LOTES
+	public final static String LOTES = "admin/lote/lista-lotes.html";
+	
+	//STOCK
+	public final static String STOCK = "admin/stock/ListaStocks.html";
+	//PROVEEDORES
+	public final static String PROVEEDORES = "admin/proveedor/proveedores.html";
+	public final static String EDITAR_PROVEEDOR = "admin/proveedor/editar-proveedor.html";
 	
 	// ROLES EN LA BD
 	public final static String ROLE_ADMIN = "ROLE_ADMIN";

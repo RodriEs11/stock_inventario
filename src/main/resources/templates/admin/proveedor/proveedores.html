@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Productos</title>
+	<title>Proveedores</title>
 
 	<!-- Custom fonts for this template-->
 	<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -39,9 +39,6 @@
 			<!-- Main Content -->
 			<div id="content">
 
-
-
-
 				<!-- Topbar -->
 				<div th:replace="~{fragments/topbar::topbar}"></div>
 
@@ -49,13 +46,11 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- DataTales Example -->
-
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Lista de productos</h1>
+					<h1 class="h3 mb-4 text-gray-800">Proveedores</h1>
 
 					<div class="card-body">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#formAgregarProductoModal">
+						<button class="btn btn-primary" data-toggle="modal" data-target="#formAgregarProveedorModal">
 							<span>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
@@ -64,12 +59,13 @@
 								</svg>
 							</span>
 							<span>
-								Agregar nuevo producto
+								Agregar nuevo proveedor
 							</span>
 
 						</button>
 
 					</div>
+
 					<div class="card-body">
 
 						<div class="table-responsive">
@@ -79,31 +75,23 @@
 
 								<thead>
 									<tr>
-										<th>Codigo</th>
 										<th>Nombre</th>
-										<th>Descripcion</th>
-										<th>Costo</th>
-										<th>Precio de venta</th>
+										<th>Telefono</th>
 										<th>Acción</th>
 									</tr>
 								</thead>
 
 								<tbody>
+									<tr th:each="proveedor : ${proveedores}">
 
-									<tr th:each="producto : ${productos}">
-
-										<td th:text="${producto.codigo}"></td>
-										<td th:text="${producto.nombre}"></td>
-										<td th:text="${producto.descripcion}"></td>
-										<td th:text="${producto.costo}"></td>
-										<td th:text="${producto.precioVenta}"></td>
+										<td th:text="${proveedor.nombre}"></td>
+										<td th:text="${proveedor.telefono}"></td>
 										<td>
-
 											<div class="d-flex p-2">
 												<a class="btn btn-success btn-circle m-1"
-													th:href="@{'/productos/editar/' + ${producto.id}}">
+													th:href="@{'/proveedores/editar/' + ${proveedor.id}}">
 													<i data-toggle="tooltip" data-placement="top"
-														title="Editar producto">
+														title="Editar proveedor">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 															fill="currentColor" class="bi bi-pencil"
 															viewBox="0 0 16 16">
@@ -113,47 +101,45 @@
 														</svg>
 													</i>
 												</a>
-
-												<form method="POST"
-													th:action="@{'/productos/eliminar/' + ${producto.id}}">
+												<form method="post"
+													th:action="@{'/proveedores/eliminar/' + ${proveedor.id}}">
 													<button class="btn btn-danger btn-circle m-1">
 														<i data-toggle="tooltip" data-placement="top"
-															title="Eliminar producto" class="fas fa-trash"></i>
+															title="Eliminar proveedor" class="fas fa-trash"></i>
 													</button>
 												</form>
 											</div>
-
-
-
-
 										</td>
 
+									</tr>
+								</tbody>
+
+							</table>
 						</div>
-
-						</tr>
-
-						</tbody>
-
-						</table>
 					</div>
-				</div>
 
-				<!-- Formulario agregar producto -->
-				<div th:replace="~{fragments/formAgregarProducto-modal::formAgregarProducto-modal}"></div>
+					<!-- Formulario agregar proveedor -->
+					<div th:replace="~{fragments/formAgregarProveedor-modal::formAgregarProveedor-modal}"></div>
+
+					<!-- Alerta de error -->
+					<div id="errorAlert" class="alert alert-danger" role="alert" th:if="${param.error}"
+						th:class="${param.error} ? 'alert alert-danger' : ''">
+						No se ha podido agregar el proveedor, porque ya existe uno con el producto seleccionado.
+					</div>
+
+				</div>
+				<!-- /.container-fluid -->
 
 			</div>
-			<!-- /.container-fluid -->
+			<!-- End of Main Content -->
+
+			<!-- Footer -->
+			<div th:replace="~{fragments/footer :: footer}"></div>
+
+			<!-- End of Footer -->
 
 		</div>
-		<!-- End of Main Content -->
-
-		<!-- Footer -->
-		<div th:replace="~{fragments/footer :: footer}"></div>
-
-		<!-- End of Footer -->
-
-	</div>
-	<!-- End of Content Wrapper -->
+		<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->
@@ -182,6 +168,7 @@
 
 	<!-- Page level custom scripts -->
 	<script th:src="@{/js/demo/datatables-demo.js}"></script>
+
 
 
 </body>

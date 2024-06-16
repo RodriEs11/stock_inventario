@@ -9,7 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,18 +27,15 @@ public class Lote {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@OneToOne
-	private Producto producto;
-
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "idProveedor")
 	private Proveedor proveedor;
+	
+	@ManyToOne
+	@JoinColumn(name = "idStock")
+	private Stock stock;
 
-	@OneToOne
-	private Almacen almacen;
-
-	private int cantidadInicial;
-
-	private int cantidadExistente;
+	private int cantidadRecibida;
 
 	private double precioDeCompra;
 
@@ -46,13 +44,5 @@ public class Lote {
 
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
-
-	public Lote(Producto producto, int cantidadInicial, int cantidadExistente, Proveedor proveedor) {
-		super();
-		this.producto = producto;
-		this.cantidadInicial = cantidadInicial;
-		this.cantidadExistente = cantidadExistente;
-		this.proveedor = proveedor;
-	}
 
 }

@@ -1,0 +1,53 @@
+<!-- Agregar Producto Modal-->
+<div class="modal fade" id="formAgregarStockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	th:fragment="formAgregarStockModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Agregar stock de un producto</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="" th:action="@{/stock/add}" method="POST">
+					<div class="form-group">
+						<label for="descripcion">Ingrese un producto</label>
+						<select class="form-control" id="producto" name="producto" required>
+							<option value="">Seleccione un producto</option>
+							<option th:each="producto : ${productos}" th:value="${producto.id}"
+								th:text="${producto.nombre}">
+							</option>
+						</select>
+					</div>
+
+
+					<div class="form-group">
+						<label for="descripcion">Cantidad minima</label>
+						<input type="number" class="form-control" id="cantidadMinima" name="cantidadMinima" required
+							placeholder="Ingrese la cantidad minima de stock">
+					</div>
+
+					<div class="form-group">
+						<label for="descripcion">Cantidad deseable</label>
+						<input type="number" class="form-control" id="cantidadDeseable" name="cantidadDeseable" required
+							placeholder="Ingrese la cantidad deseable de stock">
+					</div>
+					
+
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+					<button class="btn btn-primary" type="submit">Agregar stock </button>
+
+			</div>
+
+			</form>
+		</div>
+
+
+		<div class="modal-footer">
+
+		</div>
+	</div>
+</div>
+</div>

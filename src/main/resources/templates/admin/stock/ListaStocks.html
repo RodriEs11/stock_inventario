@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Productos</title>
+	<title>Stock</title>
 
 	<!-- Custom fonts for this template-->
 	<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -40,8 +40,6 @@
 			<div id="content">
 
 
-
-
 				<!-- Topbar -->
 				<div th:replace="~{fragments/topbar::topbar}"></div>
 
@@ -52,10 +50,10 @@
 					<!-- DataTales Example -->
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Lista de productos</h1>
+					<h1 class="h3 mb-4 text-gray-800">Stock de productos</h1>
 
 					<div class="card-body">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#formAgregarProductoModal">
+						<button class="btn btn-primary" data-toggle="modal" data-target="#formAgregarStockModal">
 							<span>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
@@ -64,7 +62,7 @@
 								</svg>
 							</span>
 							<span>
-								Agregar nuevo producto
+								Agregar nuevo stock
 							</span>
 
 						</button>
@@ -79,31 +77,29 @@
 
 								<thead>
 									<tr>
-										<th>Codigo</th>
-										<th>Nombre</th>
-										<th>Descripcion</th>
-										<th>Costo</th>
-										<th>Precio de venta</th>
+										<th># Stock</th>
+										<th>Producto</th>
+										<th>Cantidad minima</th>
+										<th>Cantidad deseable</th>
+										<th>Cantidad actual</th>
 										<th>Acción</th>
 									</tr>
 								</thead>
 
 								<tbody>
 
-									<tr th:each="producto : ${productos}">
+									<tr th:each="stock:${stocks}">
 
-										<td th:text="${producto.codigo}"></td>
-										<td th:text="${producto.nombre}"></td>
-										<td th:text="${producto.descripcion}"></td>
-										<td th:text="${producto.costo}"></td>
-										<td th:text="${producto.precioVenta}"></td>
+										<td th:text="${stock.id}"></td>
+										<td th:text="${stock.producto.nombre}"></td>
+										<td th:text="${stock.cantidadMinima}"></td>
+										<td th:text="${stock.cantidadDeseable}"></td>
+										<td th:text="${stock.cantidadActual}"></td>
 										<td>
-
 											<div class="d-flex p-2">
 												<a class="btn btn-success btn-circle m-1"
-													th:href="@{'/productos/editar/' + ${producto.id}}">
-													<i data-toggle="tooltip" data-placement="top"
-														title="Editar producto">
+													th:href="@{'/productos/editar/' + ${stock.id}}">
+													<i data-toggle="tooltip" data-placement="top" title="Editar stock">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 															fill="currentColor" class="bi bi-pencil"
 															viewBox="0 0 16 16">
@@ -114,17 +110,19 @@
 													</i>
 												</a>
 
+
 												<form method="POST"
-													th:action="@{'/productos/eliminar/' + ${producto.id}}">
+													th:action="@{'/productos/eliminar/' + ${stock.id}}">
 													<button class="btn btn-danger btn-circle m-1">
 														<i data-toggle="tooltip" data-placement="top"
-															title="Eliminar producto" class="fas fa-trash"></i>
+															title="Eliminar stock" class="fas fa-trash"></i>
 													</button>
-												</form>
+												</form> 
+					
+												<a th:href="@{'/stock/lotes/' + ${stock.id}}"class="btn btn-primary">
+												    <span class="text-white"> ver / agregar lotes</span>
+												</a>
 											</div>
-
-
-
 
 										</td>
 
@@ -139,7 +137,7 @@
 				</div>
 
 				<!-- Formulario agregar producto -->
-				<div th:replace="~{fragments/formAgregarProducto-modal::formAgregarProducto-modal}"></div>
+				<div th:replace="~{fragments/formAgregarStock-modal::formAgregarStockModal}"></div>
 
 			</div>
 			<!-- /.container-fluid -->
