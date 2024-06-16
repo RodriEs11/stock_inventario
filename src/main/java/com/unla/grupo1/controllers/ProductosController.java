@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.unla.grupo1.dtos.ProductoDTO;
@@ -26,11 +28,13 @@ public class ProductosController {
 	private IProductoService productoService;
 
 	@GetMapping("")
-	public ModelAndView productos() {
+	public ModelAndView productos(Model model, @RequestParam(name="message", required = false) String message) {
 
 		ModelAndView vista = new ModelAndView(ViewRouteHelper.PRODUCTOS);
 		vista.addObject("productos", productoService.getAll());
 		vista.addObject("producto", new ProductoModel());
+		
+		model.addAttribute("message", message);
 
 		return vista;
 	}
@@ -49,15 +53,19 @@ public class ProductosController {
 
 		productoService.insertOrUpdate(productoDTO);
 
-		return "redirect:/productos";
+		return "redirect:/productos?message=success-edit";
 	}
 
 	@PostMapping("/eliminar/{id}")
 	public String eliminarProducto(@PathVariable int id) {
 
-		productoService.deleteById(id);
-
-		return "redirect:/productos";
+		try {
+			productoService.deleteById(id);
+			return "redirect:/productos";
+		} catch (Exception e) {
+	            return "redirect:/productos?message=errordelete";
+		}
+	
 	}
 
 	@PostMapping("")
@@ -65,7 +73,7 @@ public class ProductosController {
 	
 		productoService.insertOrUpdate(productoDTO);
 
-		return "redirect:/productos";
+		return "redirect:/productos?message=success-add";
 	}
 
 }

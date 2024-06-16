@@ -70,6 +70,23 @@
 						</button>
 
 					</div>
+
+					<div class="card-body" id="message-container" th:if="${message != null}">
+						<div id="error-message" th:if="${message == 'errordelete'}"
+							class="border-left-danger alert alert-danger">
+							<span>No se ha podido eliminar el producto</span>
+						</div>
+						<div id="success-add-message" th:if="${message == 'success-add'}"
+							class="border-left-success alert alert-success">
+							<span> El producto se ha agregado correctamente</span>
+						</div>
+						<div id="success-edit-message" th:if="${message == 'success-edit'}"
+							class="border-left-success alert alert-success">
+							<span> El producto se ha actualizado correctamente</span>
+						</div>
+					</div>
+
+
 					<div class="card-body">
 
 						<div class="table-responsive">
@@ -183,6 +200,32 @@
 	<!-- Page level custom scripts -->
 	<script th:src="@{/js/demo/datatables-demo.js}"></script>
 
+	<style>
+		.hidden {
+			opacity: 0;
+			transition: opacity 0.5s ease-out;
+		}
+	</style>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+
+			var messageContainer = document.getElementById("message-container");
+
+			function hideContainer(element) {
+				if (element) {
+					setTimeout(function () {
+						element.classList.add('hidden');
+						setTimeout(function () {
+							element.remove();
+						}, 500); // Debe coincidir con la duración de la transición en CSS
+					}, 5000); // Duración de la visibilidad del mensaje
+				}
+			}
+
+			hideContainer(messageContainer);
+		});
+	</script>
 
 </body>
 
