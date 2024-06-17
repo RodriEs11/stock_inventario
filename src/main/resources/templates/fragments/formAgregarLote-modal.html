@@ -1,0 +1,59 @@
+<!-- Agregar Producto Modal-->
+<div class="modal fade" id="formAgregarLoteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	th:fragment="formAgregarLoteModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Registrar lote</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="" th:action="@{/stock/lotes/add}" method="POST">
+
+					<input type="hidden" name="stock" th:value="${id}">
+
+					<div class="form-group">
+						<label for="descripcion">Ingrese un proveedor</label>
+						<select class="form-control" id="proveedor" name="proveedor" required>
+							<option value="">Seleccione un proveedor</option>
+							<option th:each="proveedor : ${proveedores}" th:value="${proveedor.id}"
+								th:text="${proveedor.nombre}">
+							</option>
+						</select>
+					</div>
+
+
+					<div class="form-group">
+						<label for="descripcion">Cantidad recibida de productos</label>
+						<input type="number" class="form-control" id="cantidadRecibida" name="cantidadRecibida" required
+							placeholder="Ingrese la cantidad de productos del lote">
+					</div>
+
+
+					<div class="form-group">
+						<label for="descripcion">Ingrese el precio de compra</label>
+						<input type="number" class="form-control" id="precioDeCompra" name="precioDeCompra" required
+							placeholder="Ingrese el precio de compra del lote">
+					</div>
+
+
+					<button class="btn btn-primary" type="submit">Agregar lote </button>
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+
+
+			</div>
+
+
+			</form>
+		</div>
+
+
+		<div class="modal-footer">
+
+		</div>
+	</div>
+</div>
+</div>

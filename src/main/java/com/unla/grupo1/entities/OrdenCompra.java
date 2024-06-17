@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrdenCompra extends Stock{
+public class OrdenCompra {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -40,8 +40,6 @@
 			<div id="content">
 
 
-
-
 				<!-- Topbar -->
 				<div th:replace="~{fragments/topbar::topbar}"></div>
 
@@ -51,15 +49,22 @@
 
 					<div class="modal-body">
 						<form action="/productos/editar" method="POST">
-							<input type="hidden" name="id" th:value="${producto.id}"/>
+
+							<input type="hidden" name="id" th:value="${producto.id}" />
 							<div class="form-group">
 								<label for="nombre">Nombre del Producto</label>
 								<input type="text" class="form-control" id="nombre" name="nombre"
 									th:value="${producto.nombre}" required placeholder="Ingrese el nombre del producto">
 							</div>
+
+							<div class="form-group">
+								<label for="codigo">Código del producto</label>
+								<input type="text" class="form-control" id="codigo" name="codigo" required
+								th:value="${producto.codigo}" placeholder="Ingrese el código del producto">
+							</div>
+
 							<div class="form-group">
 								<label for="descripcion">Descripción</label>
-
 								<input type="text" class="form-control" id="descripcion" name="descripcion"
 									th:value="${producto.descripcion}" required
 									placeholder="Ingrese la descripción del producto">
@@ -76,14 +81,11 @@
 									th:value="${producto.precioVenta}" required
 									placeholder="Ingrese el precio de venta">
 							</div>
-							<div class="form-group">
-								<label for="cantidadMinima">Cantidad Mínima</label>
-								<input type="number" class="form-control" min="0" id="nivelStockMinimo"
-									name="nivelStockMinimo" th:value="${producto.nivelStockMinimo}" required
-									placeholder="Ingrese la cantidad mínima">
-							</div>
-							<button class="btn btn-secondary m-1" type="button" onclick="window.location.href='/productos'">Volver</button>
+
+							<button class="btn btn-secondary m-1" type="button"
+								onclick="window.location.href='/productos'">Volver</button>
 							<button class="btn btn-primary m-1" type="submit">Actualizar producto </button>
+
 						</form>
 					</div>
 
