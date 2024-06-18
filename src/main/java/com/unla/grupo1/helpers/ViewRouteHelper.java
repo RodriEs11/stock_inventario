@@ -12,9 +12,14 @@ public class ViewRouteHelper {
 	
 	//LOTES
 	public final static String LOTES = "admin/lote/lista-lotes.html";
+	public final static String EDITAR_LOTE = "admin/lote/editar-lote.html";
+
 	
 	//STOCK
 	public final static String STOCK = "admin/stock/ListaStocks.html";
+	public final static String EDITAR_STOCK = "admin/stock/editar-stock.html";
+	
+	
 	//PROVEEDORES
 	public final static String PROVEEDORES = "admin/proveedor/proveedores.html";
 	public final static String EDITAR_PROVEEDOR = "admin/proveedor/editar-proveedor.html";

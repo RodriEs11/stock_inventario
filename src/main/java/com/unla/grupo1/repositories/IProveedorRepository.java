@@ -12,6 +12,6 @@ import com.unla.grupo1.entities.Proveedor;
 @Repository("proveedorRepository")
 public interface IProveedorRepository extends JpaRepository<Proveedor, Serializable> {
 
-	public abstract Optional<ProveedorDTO> findById(int id);
+	public abstract Optional<Proveedor> findById(int id);
 	
 }

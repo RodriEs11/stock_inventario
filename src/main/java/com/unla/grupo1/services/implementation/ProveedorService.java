@@ -25,7 +25,7 @@ public class ProveedorService implements IProveedorService {
 	}
 
 	@Override
-	public Optional<ProveedorDTO> getById(int id) {
+	public Optional<Proveedor> getById(int id) {
 		return proveedorRepository.findById(id);
 	}
 

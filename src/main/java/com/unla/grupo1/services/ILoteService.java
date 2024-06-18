@@ -12,5 +12,5 @@ public interface ILoteService {
 	public Optional<Lote> getById(int id);
 	public LoteDTO insertOrUpdate(LoteDTO loteDTO);
 	public List<Lote> getAllByStockId(int id);
-	//public void deleteById(int id);
+	public void removeById(int id);
 }

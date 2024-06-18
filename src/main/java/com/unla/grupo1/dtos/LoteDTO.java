@@ -20,7 +20,7 @@ public class LoteDTO {
 	private int cantidadRecibida;
 	private double precioDeCompra;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private LocalDateTime createdAt;
 	
 }
