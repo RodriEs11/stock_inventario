@@ -67,15 +67,16 @@
 
 						</button>
 
-						<div class="card-body" id="message-container">
-
-
+						<div class="card-body">
 							<div th:if="${nivelStock}">
 								<div id="error-message" class="border-left-danger alert alert-danger">
 									<p th:text="${nivelStock}"></p>
 								</div>
 							</div>
 
+						</div>
+
+						<div class="card-body" id="message-container">
 
 
 							<div th:if="${error}">
@@ -85,7 +86,7 @@
 							</div>
 
 							<div th:if="${message}">
-								<div id="succes-message" class="border-left-success alert alert-success">
+								<div id="success-add-message" class="border-left-success alert alert-success">
 									<p th:text="${message}"></p>
 								</div>
 							</div>
@@ -143,8 +144,8 @@
 													</button>
 												</form>
 
-												<a th:href="@{'/stock/lotes/' + ${stock.id}}" class="btn btn-primary">
-													<span class="text-white"> ver / agregar lotes</span>
+												<a th:href="@{'/lotes/stock' + ${stock.id}}" class="btn btn-primary">
+													<span class="text-white">Lotes</span>
 												</a>
 											</div>
 
@@ -204,6 +205,26 @@
 
 	<!-- Page level custom scripts -->
 	<script th:src="@{/js/demo/datatables-demo.js}"></script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+
+			var messageContainer = document.getElementById("message-container");
+
+			function hideContainer(element) {
+				if (element) {
+					setTimeout(function () {
+						element.classList.add('hidden');
+						setTimeout(function () {
+							element.remove();
+						}, 500); // Debe coincidir con la duración de la transición en CSS
+					}, 5000); // Duración de la visibilidad del mensaje
+				}
+			}
+
+			hideContainer(messageContainer);
+		});
+	</script>
 
 
 </body>

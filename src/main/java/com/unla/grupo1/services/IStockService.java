@@ -11,9 +11,9 @@ public interface IStockService {
 	public List<StockDTO> getAll();
 	public Optional<Stock> getById(int id);
 	public StockDTO insertOrUpdate(StockDTO stockDTO);
+	public void removeById(int id);
 	public void sumarLote(Stock stock, int cantidad);
 	public void restarLote(Stock stock, int cantidad);
-	public void removeById(int id);
-	public List<Stock> getStocksWithLowQuantity();
+	public String checkCantidadesStock();
 
 }

@@ -100,7 +100,6 @@
 											<th>Eliminar</th>
 										</tr>
 									</thead>
-
 									<tbody>
 
 										<tr th:each="lote:${lotes}">
@@ -115,8 +114,7 @@
 											<td>
 
 
-												<form method="POST"
-													th:action="@{'/stock/lotes/eliminar/' + ${lote.id}}">
+												<form method="POST" th:action="@{'/lotes/eliminar/' + ${lote.id}}">
 													<button class="btn btn-danger btn-circle m-1">
 														<i data-toggle="tooltip" data-placement="top"
 															title="Eliminar lote" class="fas fa-trash"></i>
@@ -181,7 +179,25 @@
 	<!-- Page level custom scripts -->
 	<script th:src="@{/js/demo/datatables-demo.js}"></script>
 
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
 
+			var messageContainer = document.getElementById("message-container");
+
+			function hideContainer(element) {
+				if (element) {
+					setTimeout(function () {
+						element.classList.add('hidden');
+						setTimeout(function () {
+							element.remove();
+						}, 500); // Debe coincidir con la duración de la transición en CSS
+					}, 5000); // Duración de la visibilidad del mensaje
+				}
+			}
+
+			hideContainer(messageContainer);
+		});
+	</script>
 </body>
 
 </html>

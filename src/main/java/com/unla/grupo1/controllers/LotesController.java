@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.unla.grupo1.dtos.LoteDTO;
 import com.unla.grupo1.entities.Lote;
 import com.unla.grupo1.helpers.ViewRouteHelper;
@@ -22,7 +21,7 @@ import com.unla.grupo1.services.IStockService;
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
-@RequestMapping("stock/lotes")
+@RequestMapping("/lotes")
 public class LotesController {
 
 	@Autowired
@@ -41,55 +40,51 @@ public class LotesController {
 	@Qualifier("stockService")
 	private IStockService stockService;
 
-	@GetMapping("/{id}")
+	@GetMapping("/stock{id}")
 	public ModelAndView lotes(@PathVariable("id") int id) {
 
 		ModelAndView vista = new ModelAndView(ViewRouteHelper.LOTES);
 
 		vista.addObject("lotes", loteService.getAllByStockId(id));
-		vista.addObject("lote", loteService.getAllByStockId(id));
-
-		vista.addObject("id", id);
-
 		vista.addObject("proveedores", proveedorService.getAll());
 		vista.addObject("productos", productoService.getAll());
+		vista.addObject("id", id);
 
 		return vista;
 	}
 
 	@PostMapping("/eliminar/{id}")
-	public String eliminarStock(@PathVariable int id, RedirectAttributes message) {
+	public String eliminarLote(@PathVariable int id, RedirectAttributes message) {
 		
 		Lote lote = loteService.getById(id).get();
-		
 		int idStock = lote.getStock().getId();
-		
-		stockService.restarLote(lote.getStock(), lote.getCantidadRecibida());
-
+	
 		try {
+			stockService.restarLote(lote.getStock(), lote.getCantidadRecibida());
 			loteService.removeById(id);
-			message.addFlashAttribute("message", "el lote se elimino exitosamente");
-			return "redirect:/stock/lotes/" + idStock;
+			message.addFlashAttribute("message", "El lote se eliminó exitosamente");
+			return "redirect:/lotes/stock" + idStock;
+			
 		} catch (Exception e) {
-			message.addFlashAttribute("error", "no se pudo eliminar el lote");
-			return "redirect:/stock/lotes/" + idStock;
+			message.addFlashAttribute("error", "No se pudo eliminar el lote");
+			return "redirect:/lotes/stock" + idStock;
 		}
 	}
 
 	@PostMapping("/add")
 	public String agregarLote(@ModelAttribute("lote") LoteDTO loteDTO, RedirectAttributes message) {
 
-		stockService.sumarLote(loteDTO.getStock(), loteDTO.getCantidadRecibida());
-
-		int id = loteDTO.getStock().getId();
-
+		int idStock = loteDTO.getStock().getId();
+		
 		try {
+			stockService.sumarLote(loteDTO.getStock(), loteDTO.getCantidadRecibida());
 			loteService.insertOrUpdate(loteDTO);
-			message.addFlashAttribute("message", "el lote se agrego exitosamente");
-			return "redirect:/stock/lotes/" + id;
+			message.addFlashAttribute("message", "El lote se agregó exitosamente");
+			return "redirect:/lotes/stock" + idStock;
+			
 		} catch (Exception e) {
-			message.addFlashAttribute("error", "no se pudo agregar el lote");
-			return "redirect:/stock/lotes/" + id;
+			message.addFlashAttribute("error", "No se pudo agregar el lote");
+			return "redirect:/lotes/stock" + idStock;
 		}
 	}
 }

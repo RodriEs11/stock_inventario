@@ -1,8 +1,6 @@
 package com.unla.grupo1.controllers;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.unla.grupo1.dtos.StockDTO;
-import com.unla.grupo1.entities.Stock;
 import com.unla.grupo1.helpers.ViewRouteHelper;
 import com.unla.grupo1.services.ILoteService;
 import com.unla.grupo1.services.IProductoService;
@@ -38,32 +35,27 @@ public class StockController {
 	@Autowired
 	@Qualifier("loteService")
 	private ILoteService loteService;
+	
+	private ModelMapper modelMapper = new ModelMapper();
 
 	@GetMapping("")
 	public ModelAndView stocks() {
 		
 		ModelAndView vista = new ModelAndView(ViewRouteHelper.STOCK);
 		
-
-		if (stockService.getStocksWithLowQuantity().size() > 0) {
-			
-			vista.addObject("nivelStock", "Cantidad actual por debajo de la minima en los stocks: " + stockService.getStocksWithLowQuantity().stream()
-            .map(Stock::getId)
-            .collect(Collectors.toList()));
-		}
-		
-		vista.addObject("productos", productoService.getAll());
 		vista.addObject("stocks", stockService.getAll());
-
-		
+		vista.addObject("nivelStock", stockService.checkCantidadesStock());
+		vista.addObject("productos", productoService.getAll());
+	
 		return vista;
 	}
 
 	@GetMapping("/editar/{id}")
-	public ModelAndView editarStock(@PathVariable int id) {
+	public ModelAndView verEditarStock(@PathVariable int id) {
 
 		ModelAndView vista = new ModelAndView(ViewRouteHelper.EDITAR_STOCK);
-		vista.addObject("stock", stockService.getById(id).get());
+		StockDTO stockDTO = modelMapper.map(stockService.getById(id).get(), StockDTO.class);
+		vista.addObject("stock", stockDTO);
 
 		return vista;
 	}
@@ -71,10 +63,15 @@ public class StockController {
 	@PostMapping("/editar")
 	public String editarStock(@ModelAttribute("stock") StockDTO stockDTO,  RedirectAttributes message) {
 
-		stockService.insertOrUpdate(stockDTO);
-
-		message.addFlashAttribute("message", "El stock se edito exitosamente");
-		return "redirect:/stock";
+		try {	
+			stockService.insertOrUpdate(stockDTO);
+			message.addFlashAttribute("message", "El stock se editó exitosamente");
+			return "redirect:/stock";
+			
+		}catch (Exception e) {
+			message.addFlashAttribute("error", "No se pudo editar el stock");
+			return "redirect:/stock";
+		}
 	}
 
 	@PostMapping("/eliminar/{id}")
@@ -82,10 +79,11 @@ public class StockController {
 
 		try {
 			stockService.removeById(id);
-			message.addFlashAttribute("message", "El stock se elimino exitosamente");
+			message.addFlashAttribute("message", "El stock se eliminó exitosamente");
 			return "redirect:/stock";
+			
 		} catch (Exception e) {
-			message.addFlashAttribute("error", "No se pudo eliminar el stock porque tiene lotes asociados");
+			message.addFlashAttribute("error", "No se pudo eliminar el stock, verifique si tiene lotes asociados");
 			return "redirect:/stock";
 		}
 	}
@@ -95,10 +93,11 @@ public class StockController {
 
 		try {
 			stockService.insertOrUpdate(stockDTO);
-			message.addFlashAttribute("message", "El stock se agrego exitosamente");
+			message.addFlashAttribute("message", "El stock se agregó exitosamente");
 			return "redirect:/stock";
+		
 		} catch (Exception e) {
-			message.addFlashAttribute("error", "Error, ya existe un stock del mismo producto");
+			message.addFlashAttribute("error", "Error, verifique si ya existe un stock del mismo producto");
 			return "redirect:/stock";
 		}
 	}

@@ -50,7 +50,7 @@
 				<div class="container">
 
 					<div class="modal-body">
-						<form action="" th:action="@{'/stock/lotes/editar/' + ${lote.stock.id}}" method="POST">
+						<form action="" th:action="@{'/lotes/editar/' + ${lote.stock.id}}" method="POST">
 							<input type="hidden" name="id" th:value="${lote.id}" />
 							<input type="hidden" name="idStock" th:value="${lote.stock.id}" />
 							<input type="hidden" name="createdAt" th:value="${lote.createdAt}" />
