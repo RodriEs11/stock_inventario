@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Editar proveedor</title>
+	<title>Editar stock</title>
 
 	<!-- Custom fonts for this template-->
 	<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -40,8 +40,6 @@
 			<div id="content">
 
 
-
-
 				<!-- Topbar -->
 				<div th:replace="~{fragments/topbar::topbar}"></div>
 
@@ -50,27 +48,28 @@
 				<div class="container">
 
 					<div class="modal-body">
-						<form action="" th:action="@{/proveedores/editar}" method="POST">
-							<input type="hidden" name="id" th:value="${proveedor.id}"/>
+						<form action="" th:action="@{/stock/editar}" method="POST">
+
+							<input type="hidden" name="id" th:value="${stock.id}" />
+							<input type="hidden" name="producto" th:value="${stock.producto.id}" />
+							<input type="hidden" name="cantidadActual" th:value="${stock.cantidadActual}" />
 							<div class="form-group">
-								<label for="nombre">Nombre del proveedor</label>
-								<input type="text" class="form-control" id="nombre" name="nombre"
-									th:value="${proveedor.nombre}" required
-									placeholder="Ingrese el nombre del producto">
+								<label for="nombre">Cantidad minima</label>
+								<input type="text" class="form-control" id="cantidadMinima" name="cantidadMinima"
+									th:value="${stock.cantidadMinima}" required placeholder="Ingrese la cantidad minima">
 							</div>
 
-
 							<div class="form-group">
-								<label for="telefono">Teléfono del proveedor</label>
-
-								<input type="number" class="form-control" id="telefono" name="telefono" required th:value="${proveedor.telefono}"
-									pattern="[0-9]{10}" placeholder="Ingrese el teléfono del proveedor">
-
+								<label for="codigo">Cantidad deseable</label>
+								<input type="text" class="form-control" id="cantidadDeseable" name="cantidadDeseable" required
+									th:value="${stock.cantidadDeseable}" placeholder="Ingrese la cantidad deseable">
 							</div>
+
 
 							<button class="btn btn-secondary m-1" type="button"
-								onclick="window.location.href='/proveedores'">Volver</button>
-							<button class="btn btn-primary m-1" type="submit">Actualizar proveedor </button>
+								onclick="window.location.href='/stock'">Volver</button>
+							<button class="btn btn-primary m-1" type="submit">Actualizar stock </button>
+
 						</form>
 					</div>
 

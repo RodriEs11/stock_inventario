@@ -67,6 +67,31 @@
 
 						</button>
 
+						<div class="card-body" id="message-container">
+
+
+							<div th:if="${nivelStock}">
+								<div id="error-message" class="border-left-danger alert alert-danger">
+									<p th:text="${nivelStock}"></p>
+								</div>
+							</div>
+
+
+
+							<div th:if="${error}">
+								<div id="error-message" class="border-left-danger alert alert-danger">
+									<p th:text="${error}"></p>
+								</div>
+							</div>
+
+							<div th:if="${message}">
+								<div id="succes-message" class="border-left-success alert alert-success">
+									<p th:text="${message}"></p>
+								</div>
+							</div>
+
+						</div>
+
 					</div>
 					<div class="card-body">
 
@@ -98,7 +123,7 @@
 										<td>
 											<div class="d-flex p-2">
 												<a class="btn btn-success btn-circle m-1"
-													th:href="@{'/productos/editar/' + ${stock.id}}">
+													th:href="@{'/stock/editar/' + ${stock.id}}">
 													<i data-toggle="tooltip" data-placement="top" title="Editar stock">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 															fill="currentColor" class="bi bi-pencil"
@@ -111,16 +136,15 @@
 												</a>
 
 
-												<form method="POST"
-													th:action="@{'/productos/eliminar/' + ${stock.id}}">
+												<form method="POST" th:action="@{'/stock/eliminar/' + ${stock.id}}">
 													<button class="btn btn-danger btn-circle m-1">
 														<i data-toggle="tooltip" data-placement="top"
 															title="Eliminar stock" class="fas fa-trash"></i>
 													</button>
-												</form> 
-					
-												<a th:href="@{'/stock/lotes/' + ${stock.id}}"class="btn btn-primary">
-												    <span class="text-white"> ver / agregar lotes</span>
+												</form>
+
+												<a th:href="@{'/stock/lotes/' + ${stock.id}}" class="btn btn-primary">
+													<span class="text-white"> ver / agregar lotes</span>
 												</a>
 											</div>
 

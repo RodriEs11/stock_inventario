@@ -63,6 +63,21 @@
 							</span>
 
 						</button>
+						<div class="card-body" id="message-container">
+
+							<div th:if="${error}">
+								<div id="error-message" class="border-left-danger alert alert-danger">
+									<p th:text="${error}"></p>
+								</div>
+							</div>
+
+							<div th:if="${message}">
+								<div id="succes-message" class="border-left-success alert alert-success">
+									<p th:text="${message}"></p>
+								</div>
+							</div>
+						</div>
+
 
 					</div>
 
@@ -121,11 +136,6 @@
 					<!-- Formulario agregar proveedor -->
 					<div th:replace="~{fragments/formAgregarProveedor-modal::formAgregarProveedor-modal}"></div>
 
-					<!-- Alerta de error -->
-					<div id="errorAlert" class="alert alert-danger" role="alert" th:if="${param.error}"
-						th:class="${param.error} ? 'alert alert-danger' : ''">
-						No se ha podido agregar el proveedor, porque ya existe uno con el producto seleccionado.
-					</div>
 
 				</div>
 				<!-- /.container-fluid -->

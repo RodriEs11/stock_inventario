@@ -47,4 +47,8 @@ public class LoteService implements ILoteService {
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public void removeById(int id) {
+		loteRepository.deleteById(id);
+	}
 }

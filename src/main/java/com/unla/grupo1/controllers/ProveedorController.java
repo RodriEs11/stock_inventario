@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.unla.grupo1.dtos.ProveedorDTO;
 import com.unla.grupo1.helpers.ViewRouteHelper;
@@ -23,13 +25,12 @@ public class ProveedorController {
 	@Autowired
 	@Qualifier("proveedorService")
 	private IProveedorService proveedorService;
-	
+
 	@GetMapping("")
-	public ModelAndView productos() {
+	public ModelAndView proveedores() {
 
 		ModelAndView vista = new ModelAndView(ViewRouteHelper.PROVEEDORES);
 		vista.addObject("proveedores", proveedorService.getAll());
-		vista.addObject("proveedor", new ProveedorDTO());
 
 		return vista;
 	}
@@ -38,18 +39,43 @@ public class ProveedorController {
 	public ModelAndView editarProveedor(@PathVariable int id) {
 
 		ModelAndView vista = new ModelAndView(ViewRouteHelper.EDITAR_PROVEEDOR);
-		vista.addObject("producto", proveedorService.getById(id));
+		vista.addObject("proveedor", proveedorService.getById(id).get());
 
 		return vista;
 	}
 
-	@PostMapping("/add")
-	public String agregarProveedor(@ModelAttribute("proveedor") ProveedorDTO proveedorDTO) {
+	@PostMapping("/editar")
+	public String editarProveedor(@ModelAttribute("proveedor") ProveedorDTO proveedorDTO, RedirectAttributes message) {
 
 		proveedorService.insertOrUpdate(proveedorDTO);
 
+		message.addFlashAttribute("message", "el proveedor se edito exitosamente");
+
 		return "redirect:/proveedores";
 	}
-	
-	
+
+	@PostMapping("/eliminar/{id}")
+	public String eliminarProveedor(@PathVariable int id, RedirectAttributes message) {
+
+		try {
+			proveedorService.removeById(id);
+			message.addFlashAttribute("message", "el proveedor se elimino exitosamente");
+			return "redirect:/proveedores";
+		} catch (Exception e) {
+			message.addFlashAttribute("error", "el proveedor no se pudo eliminar porque esta asociado a un lote");
+			return "redirect:/proveedores";
+		}
+
+	}
+
+	@PostMapping("/add")
+	public String agregarProveedor(@ModelAttribute("proveedor") ProveedorDTO proveedorDTO, RedirectAttributes message) {
+
+		proveedorService.insertOrUpdate(proveedorDTO);
+		
+		message.addFlashAttribute("message", "el proveedor se agrego exitosamente");
+
+		return "redirect:/proveedores";
+	}
+
 }
