@@ -53,7 +53,7 @@
 					<h1 class="h3 mb-4 text-gray-800">Notas de pedido</h1>
 
 					<div class="card-body">
-						
+
 						<div class="card-body" id="message-container">
 
 							<div th:if="${error}">
@@ -120,20 +120,20 @@
 						</table>
 					</div>
 				</div>
-
-				<!-- Formulario agregar producto -->
-				<div th:replace="~{fragments/formAgregarLote-modal::formAgregarLoteModal}"></div>
-
 			</div>
-			<!-- /.container-fluid -->
+			<!-- Formulario agregar producto -->
+			<div th:replace="~{fragments/formAgregarLote-modal::formAgregarLoteModal}"></div>
 
 		</div>
-		<!-- End of Main Content -->
+		<!-- /.container-fluid -->
 
-		<!-- Footer -->
-		<div th:replace="~{fragments/footer :: footer}"></div>
+	</div>
+	<!-- End of Main Content -->
 
-		<!-- End of Footer -->
+	<!-- Footer -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+	<!-- End of Footer -->
 
 	</div>
 	<!-- End of Content Wrapper -->
