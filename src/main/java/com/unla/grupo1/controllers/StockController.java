@@ -44,7 +44,6 @@ public class StockController {
 		ModelAndView vista = new ModelAndView(ViewRouteHelper.STOCK);
 		
 		vista.addObject("stocks", stockService.getAll());
-		vista.addObject("nivelStock", stockService.checkCantidadesStock());
 		vista.addObject("productos", productoService.getAll());
 	
 		return vista;

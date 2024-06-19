@@ -74,7 +74,7 @@
 					<div class="card-body" id="message-container" th:if="${message != null}">
 						<div id="error-message" th:if="${message == 'errordelete'}"
 							class="border-left-danger alert alert-danger">
-							<span>No se ha podido eliminar el producto porque esta asociado a un stock</span>
+							<span>No se ha podido eliminar el producto, verifique si está asociado a un stock</span>
 						</div>
 						<div id="success-add-message" th:if="${message == 'success-add'}"
 							class="border-left-success alert alert-success">

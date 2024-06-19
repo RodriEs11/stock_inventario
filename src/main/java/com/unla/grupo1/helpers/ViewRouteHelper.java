@@ -19,6 +19,12 @@ public class ViewRouteHelper {
 	public final static String STOCK = "admin/stock/ListaStocks.html";
 	public final static String EDITAR_STOCK = "admin/stock/editar-stock.html";
 	
+	//NOTAS PEDIDO
+	public final static String NOTAS_PEDIDO = "admin/notaPedido/notasPedido.html";
+	
+	public final static String AGREGAR_NOTA_PEDIDO = "admin/notaPedido/agregar-nota-pedido.html";
+	
+	
 	
 	//PROVEEDORES
 	public final static String PROVEEDORES = "admin/proveedor/proveedores.html";

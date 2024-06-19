@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Editar stock</title>
+	<title>Nuevo pedido</title>
 
 	<!-- Custom fonts for this template-->
 	<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -39,7 +39,6 @@
 			<!-- Main Content -->
 			<div id="content">
 
-
 				<!-- Topbar -->
 				<div th:replace="~{fragments/topbar::topbar}"></div>
 
@@ -48,28 +47,19 @@
 				<div class="container">
 
 					<div class="modal-body">
-						<form action="" th:action="@{/stock/editar}" method="POST">
-
-							<input type="hidden" name="id" th:value="${stock.id}" />
-							<input type="hidden" name="producto" th:value="${stock.producto.id}" />
-							<input type="hidden" name="cantidadActual" th:value="${stock.cantidadActual}" />
-							<div class="form-group">
-								<label for="nombre">Cantidad minima</label>
-								<input type="number" class="form-control" id="cantidadMinima" name="cantidadMinima" min="1"
-									th:value="${stock.cantidadMinima}" required placeholder="Ingrese la cantidad minima">
-							</div>
+						<form action="" th:action="@{/notasPedido/add}" method="POST">
+							<input type="hidden" name="producto" th:value="${producto}" />
+							<input type="hidden" name="activa" th:value="${true}" />
 
 							<div class="form-group">
-								<label for="codigo">Cantidad deseable</label>
-								<input type="number" class="form-control" id="cantidadDeseable" name="cantidadDeseable" min="1" required
-									th:value="${stock.cantidadDeseable}" placeholder="Ingrese la cantidad deseable">
+								<label for="nombre">Cantidad a pedir</label>
+								<input type="number" class="form-control" id="cantidad" name="cantidad" min="1"
+									th:value="${notaPedido.cantidad}" required
+									placeholder="Ingrese la cantidad a pedir">
 							</div>
-
-
 							<button class="btn btn-secondary m-1" type="button"
 								onclick="window.location.href='/stock'">Volver</button>
-							<button class="btn btn-primary m-1" type="submit">Actualizar stock </button>
-
+							<button class="btn btn-primary m-1" type="submit">Agregar </button>
 						</form>
 					</div>
 

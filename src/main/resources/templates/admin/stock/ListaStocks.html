@@ -67,15 +67,6 @@
 
 						</button>
 
-						<div class="card-body">
-							<div th:if="${nivelStock}">
-								<div id="error-message" class="border-left-danger alert alert-danger">
-									<p th:text="${nivelStock}"></p>
-								</div>
-							</div>
-
-						</div>
-
 						<div class="card-body" id="message-container">
 
 
@@ -108,7 +99,9 @@
 										<th>Cantidad minima</th>
 										<th>Cantidad deseable</th>
 										<th>Cantidad actual</th>
+										<th>Nivel de stock</th>
 										<th>Acción</th>
+
 									</tr>
 								</thead>
 
@@ -121,6 +114,26 @@
 										<td th:text="${stock.cantidadMinima}"></td>
 										<td th:text="${stock.cantidadDeseable}"></td>
 										<td th:text="${stock.cantidadActual}"></td>
+
+
+										<td>
+											<div th:if="${stock.cantidadActual <= stock.CantidadMinima}">
+												<div tid="error-message" class="border-left-danger alert alert-danger">
+													<span>Bajo</span>
+												</div>
+												<a th:href="@{'/notasPedido/agregar/' + ${stock.producto.nombre}}" class="btn btn-primary">
+													<span class="text-white">Generar pedido</span>
+												</a>
+											</div>
+											<div th:if="${stock.cantidadActual > stock.CantidadMinima}">
+												<div id="success-add-message"
+													class="border-left-success alert alert-success">
+													<span>Aceptable</span>
+												</div>
+											</div>
+										</td>
+
+
 										<td>
 											<div class="d-flex p-2">
 												<a class="btn btn-success btn-circle m-1"
