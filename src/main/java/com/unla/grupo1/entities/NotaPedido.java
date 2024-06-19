@@ -1,10 +1,13 @@
 package com.unla.grupo1.entities;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,17 +17,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "stock")
-public class Stock {
+@Table(name = "notaPedido")
+public class NotaPedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	int cantidadMinima;
-	int cantidadActual;
-	int cantidadDeseable;
+	private int id;
 	
-	@OneToOne
-	private Producto producto;
+	private String producto;
+
+	private int cantidad;
 	
+	private boolean activa;
+
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+
 }

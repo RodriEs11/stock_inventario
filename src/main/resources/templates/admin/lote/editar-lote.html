@@ -52,7 +52,6 @@
 					<div class="modal-body">
 						<form action="" th:action="@{'/lotes/editar/' + ${lote.stock.id}}" method="POST">
 							<input type="hidden" name="id" th:value="${lote.id}" />
-							<input type="hidden" name="idStock" th:value="${lote.stock.id}" />
 							<input type="hidden" name="createdAt" th:value="${lote.createdAt}" />
 							<input type="hidden" name="stock" th:value="${lote.stock.id}" />
 
@@ -61,21 +60,22 @@
 								<select class="form-control" id="proveedor" name="proveedor" required>
 									<option value="">Seleccione un proveedor</option>
 									<option th:each="proveedor : ${proveedores}" th:value="${proveedor.id}"
-										th:text="${proveedor.nombre}"  th:selected="${proveedor.id == lote.proveedor.id}">>
-										
+										th:text="${proveedor.nombre}"
+										th:selected="${proveedor.id == lote.proveedor.id}">>
+
 									</option>
 								</select>
 							</div>
 
 							<div class="form-group">
 								<label for="nombre">Cantidad</label>
-								<input type="number" class="form-control" id="cantidadRecibida" name="cantidadRecibida"
+								<input type="number" class="form-control" id="cantidadRecibida" name="cantidadRecibida" min="1"
 									th:value="${lote.cantidadRecibida}" required
 									placeholder="Ingrese la cantidad recibida">
 							</div>
 							<div class="form-group">
 								<label for="nombre">Precio de compra</label>
-								<input type="number" class="form-control" id="precioDeCompra" name="precioDeCompra"
+								<input type="number" class="form-control" id="precioDeCompra" name="precioDeCompra" min="1"
 									th:value="${lote.precioDeCompra}" required
 									placeholder="Ingrese el precio de compra">
 							</div>

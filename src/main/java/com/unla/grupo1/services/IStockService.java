@@ -14,6 +14,5 @@ public interface IStockService {
 	public void removeById(int id);
 	public void sumarLote(Stock stock, int cantidad);
 	public void restarLote(Stock stock, int cantidad);
-	public String checkCantidadesStock();
 
 }

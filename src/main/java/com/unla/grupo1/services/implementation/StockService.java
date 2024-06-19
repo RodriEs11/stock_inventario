@@ -29,17 +29,20 @@ public class StockService implements IStockService {
 				.collect(Collectors.toList());
 	}
 
+	@Override
 	public Optional<Stock> getById(int id) {
 
 		return stockRepository.findById(id);
 	}
 
+	@Override
 	public StockDTO insertOrUpdate(StockDTO stockDTO) {
 
 		Stock stock = stockRepository.save(modelMapper.map(stockDTO, Stock.class));
 		return modelMapper.map(stock, StockDTO.class);
 	}
 
+	@Override
 	public void sumarLote(Stock stock, int cantidad) {
 
 		StockDTO stockDTO = modelMapper.map(stock, StockDTO.class);
@@ -49,8 +52,10 @@ public class StockService implements IStockService {
 		stockDTO.setCantidadActual(cantActual + cantidad);
 
 		insertOrUpdate(stockDTO);
-	};
+	}
 
+
+	@Override
 	public void restarLote(Stock stock, int cantidad) {
 
 		StockDTO stockDTO = modelMapper.map(stock, StockDTO.class);
@@ -61,28 +66,12 @@ public class StockService implements IStockService {
 
 		insertOrUpdate(stockDTO);
 
-	};
+	}
 
+	@Override
 	public void removeById(int id) {
 
 		stockRepository.deleteById(id);
-	};
-
-
-	public String checkCantidadesStock() {
-		
-		List<Stock> listaStock = stockRepository.findStocksWithLowQuantity();
-		
-		String mensaje = null;
-		
-		if (listaStock.size() > 0) {
-			mensaje = "Aviso: cantidad actual por debajo de la mínima en los stocks: " + listaStock.stream()
-		            .map(Stock::getId)
-		            .collect(Collectors.toList());
-		
-		}
-		
-		return mensaje;
 	}
 
 }
