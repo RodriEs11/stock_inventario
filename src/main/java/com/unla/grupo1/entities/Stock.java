@@ -27,4 +27,8 @@ public class Stock {
 	@OneToOne
 	private Producto producto;
 	
+	@ManyToOne
+    @JoinColumn(name = "idInforme") 
+    private Informe informe;
+	
 }

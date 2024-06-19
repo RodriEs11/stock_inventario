@@ -35,4 +35,8 @@ public class ViewRouteHelper {
 	public final static String ROLE_CLIENTE = "ROLE_CLIENTE";
 	public final static String ROLE_GENERAL = "ROLE_GENERAL";
 
+	// INFORMES
+	public final static String INFORMES = "admin/informe/informes.html";
+	
+	
 }

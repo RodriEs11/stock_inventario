@@ -13,4 +13,6 @@ public interface ILoteRepository extends JpaRepository<Lote, Serializable>{
 
 	public abstract Optional<Lote> findById(int id);
 	public abstract List<Lote> findAllByStockId(int id);
+	//-------------------
+	public abstract List<Lote> findByStock_Producto_Id(int productoId);
 }

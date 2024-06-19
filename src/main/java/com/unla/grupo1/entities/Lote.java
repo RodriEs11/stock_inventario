@@ -35,6 +35,10 @@ public class Lote {
 	@JoinColumn(name = "idStock")
 	private Stock stock;
 
+	@ManyToOne
+    @JoinColumn(name = "idInforme") 
+    private Informe informe;
+	
 	private int cantidadRecibida;
 
 	private double precioDeCompra;

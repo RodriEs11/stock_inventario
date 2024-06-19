@@ -42,6 +42,11 @@ public class LoteService implements ILoteService {
 	}
 
 	@Override
+	public List<Lote> findByStock_Producto_Id(int productoId){
+		return loteRepository.findByStock_Producto_Id(productoId);
+	}
+	
+	@Override
 	public List<LoteDTO> getAll() {
 		return loteRepository.findAll().stream().map(lote -> modelMapper.map(lote, LoteDTO.class))
 				.collect(Collectors.toList());
