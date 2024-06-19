@@ -1,6 +1,5 @@
 package com.unla.grupo1.services.implementation;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -57,21 +56,14 @@ public class InformeService implements IInformeService{
 	
 	@Override
 	public InformeDTO insertOrUpdate(InformeDTO informeDTO) {
+		
 		Informe informe = modelMapper.map(informeDTO, Informe.class);
-
 	    calcularCantidadVendidaEnElUltimoMes(informe);
-
 	    calcularTiempoAlmacenamientoPromedio(informe);
-
 	    stockTotal(informe);
-
 	    informe = informeRepository.save(informe);
 
 	    return modelMapper.map(informe, InformeDTO.class);
-//		calcularCantidadVendidaEnElUltimoMes(modelMapper.map(informeDTO, Informe.class));
-//        calcularTiempoAlmacenamientoPromedio(modelMapper.map(informeDTO, Informe.class));
-//		Informe informe = informeRepository.save(modelMapper.map(informeDTO, Informe.class));
-//		return modelMapper.map(informe, InformeDTO.class);
 	}
 	
 	@Override
@@ -81,8 +73,8 @@ public class InformeService implements IInformeService{
 	
 	@Override
 	public void calcularCantidadVendidaEnElUltimoMes(Informe informe) {
-		LocalDateTime fechaInicio = LocalDateTime.now().minusMonths(1); // Fecha de hace un mes
-        LocalDateTime fechaFin = LocalDateTime.now(); // Fecha actual
+		LocalDateTime fechaInicio = LocalDateTime.now().minusMonths(1); 
+        LocalDateTime fechaFin = LocalDateTime.now(); 
        
         List<Compra> comprasTotales = compraRepository.findComprasBetweenFechasAndByProducto(fechaInicio, fechaFin, informe.getProducto().getId());
         Integer cantidadVendida = comprasTotales.size();
@@ -91,7 +83,7 @@ public class InformeService implements IInformeService{
 	
 	@Override
 	public void calcularTiempoAlmacenamientoPromedio(Informe informe) {
-		// traigo todos los lotes asociados con el idProducto
+		
 		List<Lote> lotes = loteRepository.findByStock_Producto_Id(informe.getProducto().getId());
 		
 		if (lotes.isEmpty()) {
