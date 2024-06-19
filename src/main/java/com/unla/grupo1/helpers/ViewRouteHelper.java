@@ -21,14 +21,14 @@ public class ViewRouteHelper {
 	
 	//NOTAS PEDIDO
 	public final static String NOTAS_PEDIDO = "admin/notaPedido/notasPedido.html";
-	
 	public final static String AGREGAR_NOTA_PEDIDO = "admin/notaPedido/agregar-nota-pedido.html";
-	
-	
 	
 	//PROVEEDORES
 	public final static String PROVEEDORES = "admin/proveedor/proveedores.html";
 	public final static String EDITAR_PROVEEDOR = "admin/proveedor/editar-proveedor.html";
+	
+	//COMPRA
+	public final static String COMPRA = "cliente/listaProductos.html";
 	
 	// ROLES EN LA BD
 	public final static String ROLE_ADMIN = "ROLE_ADMIN";
