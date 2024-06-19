@@ -60,7 +60,6 @@ public class LotesController {
 		int idStock = lote.getStock().getId();
 	
 		try {
-			stockService.restarLote(lote.getStock(), lote.getCantidadRecibida());
 			loteService.removeById(id);
 			message.addFlashAttribute("message", "El lote se eliminó exitosamente");
 			return "redirect:/lotes/stock" + idStock;
