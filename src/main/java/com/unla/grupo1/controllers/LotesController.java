@@ -15,7 +15,6 @@ import com.unla.grupo1.dtos.LoteDTO;
 import com.unla.grupo1.entities.Lote;
 import com.unla.grupo1.helpers.ViewRouteHelper;
 import com.unla.grupo1.services.ILoteService;
-import com.unla.grupo1.services.IProductoService;
 import com.unla.grupo1.services.IProveedorService;
 import com.unla.grupo1.services.IStockService;
 
