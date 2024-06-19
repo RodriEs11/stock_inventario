@@ -33,10 +33,6 @@ public class LotesController {
 	private IProveedorService proveedorService;
 
 	@Autowired
-	@Qualifier("productoService")
-	private IProductoService productoService;
-
-	@Autowired
 	@Qualifier("stockService")
 	private IStockService stockService;
 
@@ -47,7 +43,6 @@ public class LotesController {
 
 		vista.addObject("lotes", loteService.getAllByStockId(id));
 		vista.addObject("proveedores", proveedorService.getAll());
-		vista.addObject("productos", productoService.getAll());
 		vista.addObject("id", id);
 
 		return vista;

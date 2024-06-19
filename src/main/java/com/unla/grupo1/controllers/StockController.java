@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.unla.grupo1.dtos.StockDTO;
 import com.unla.grupo1.helpers.ViewRouteHelper;
-import com.unla.grupo1.services.ILoteService;
 import com.unla.grupo1.services.IProductoService;
 import com.unla.grupo1.services.IStockService;
 
@@ -32,10 +31,6 @@ public class StockController {
 	@Qualifier("productoService")
 	private IProductoService productoService;
 
-	@Autowired
-	@Qualifier("loteService")
-	private ILoteService loteService;
-	
 	private ModelMapper modelMapper = new ModelMapper();
 
 	@GetMapping("")
