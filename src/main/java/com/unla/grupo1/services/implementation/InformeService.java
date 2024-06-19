@@ -75,9 +75,14 @@ public class InformeService implements IInformeService{
 	public void calcularCantidadVendidaEnElUltimoMes(Informe informe) {
 		LocalDateTime fechaInicio = LocalDateTime.now().minusMonths(1); 
         LocalDateTime fechaFin = LocalDateTime.now(); 
-       
+        Integer cantidadVendida = 0;
+        
         List<Compra> comprasTotales = compraRepository.findComprasBetweenFechasAndByProducto(fechaInicio, fechaFin, informe.getProducto().getId());
-        Integer cantidadVendida = comprasTotales.size();
+        
+        for (Compra compra : comprasTotales) {
+			cantidadVendida+= compra.getCantidad();
+		}
+        
 		informe.setVentasUltimoMes(cantidadVendida != null ? cantidadVendida : 0);
 	}
 	
