@@ -35,4 +35,8 @@ public class Compra {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
+	@ManyToOne
+    @JoinColumn(name = "idInforme") 
+    private Informe informe;
+	
 }

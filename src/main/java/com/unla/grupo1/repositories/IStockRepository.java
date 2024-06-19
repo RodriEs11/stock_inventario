@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.unla.grupo1.entities.Producto;
@@ -21,4 +22,7 @@ public interface IStockRepository extends JpaRepository<Stock, Serializable>{
 	 
 	 public abstract Stock findByProducto(Producto producto);
 
+	 @Query("SELECT s FROM Stock s INNER JOIN FETCH s.producto p WHERE p.id = :productoId")
+	 List<Stock> findAllByProducto(@Param("productoId") int productoId);
+	 
 }
