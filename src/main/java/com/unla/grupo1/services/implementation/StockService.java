@@ -56,19 +56,6 @@ public class StockService implements IStockService {
 
 
 	@Override
-	public void restarLote(Stock stock, int cantidad) {
-
-		StockDTO stockDTO = modelMapper.map(stock, StockDTO.class);
-
-		int cantActual = stockDTO.getCantidadActual();
-
-		stockDTO.setCantidadActual(cantActual - cantidad);
-
-		insertOrUpdate(stockDTO);
-
-	}
-
-	@Override
 	public void removeById(int id) {
 
 		stockRepository.deleteById(id);
