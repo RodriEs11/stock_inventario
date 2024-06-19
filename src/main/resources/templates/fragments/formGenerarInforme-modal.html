@@ -4,7 +4,7 @@
 		<div class="modal-content">
 
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Generar informe de un producto</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Generar nuevo informe</h5>
 				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
@@ -12,9 +12,9 @@
 			<div class="modal-body">
 				<form th:action="@{/informes/generar}" method="POST">
 					<div class="form-group">
-						<label for="producto">Ingrese un producto</label>
+						<label for="producto">Seleccione un producto</label>
 						<select class="form-control" id="producto" name="producto" required>
-							<option value="">Seleccione un producto</option>
+							<option value="">Productos...</option>
 							<option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}">
 							</option>
 						</select>

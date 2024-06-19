@@ -52,7 +52,7 @@
 					<!-- DataTales Example -->
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Lista de informes</h1>
+					<h1 class="h3 mb-4 text-gray-800">Informes de Rendimiento</h1>
 
 					<div class="card-body">
 						<button class="btn btn-primary" data-toggle="modal" data-target="#formGenerarInformeModal">
@@ -72,14 +72,17 @@
 					</div>
 
 					
-					<div class="card-body" id="message-container" th:if="${message != null}">
-						<div id="error-message" th:if="${message == 'errordelete'}"
-							class="border-left-danger alert alert-danger">
-							<span>No se ha podido eliminar el informe</span>
+					<div class="card-body" id="message-container">
+						
+						<div th:if="${error}">
+							<div id="error-message" class="border-left-danger alert alert-danger">
+								<p th:text="${error}"></p>
+							</div>
 						</div>
-						<div id="success-add-message" th:if="${message == 'success-add'}"
-							class="border-left-success alert alert-success">
-							<span>El informe se ha generado correctamente</span>
+						<div th:if="${message}">
+							<div id="success-add-message" class="border-left-success alert alert-success">
+								<p th:text="${message}"></p>
+							</div>
 						</div>
 						
 					</div>

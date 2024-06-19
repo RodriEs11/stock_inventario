@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.unla.grupo1.dtos.InformeDTO;
+import com.unla.grupo1.dtos.LoteDTO;
 import com.unla.grupo1.dtos.ProductoDTO;
 import com.unla.grupo1.helpers.ViewRouteHelper;
 import com.unla.grupo1.models.ProductoModel;
@@ -62,13 +64,18 @@ public class InformeController {
 	
 	
 	@PostMapping("/generar")
-	public String generarInforme(@ModelAttribute("informe") InformeDTO informeDTO) {
-	
-		informeService.insertOrUpdate(informeDTO);
+	public String generarInforme(@ModelAttribute("informe") InformeDTO informeDTO, RedirectAttributes message) {
 
-		return "redirect:/informes";
+		try {
+			informeService.insertOrUpdate(informeDTO);
+			message.addFlashAttribute("message", "El informe se generó exitosamente");
+			return "redirect:/informes";
+			
+		} catch (Exception e) {
+			message.addFlashAttribute("error", "No se puede generar más de un informe por producto");
+			return "redirect:/informes";
+		}
 	}
-	
 	
 	
 }
